@@ -64,14 +64,22 @@ class CustomTextField extends StatelessWidget {
           ),
           labelText: hintText,
         ),
-        onEditingComplete: () => onEditingComplete!(),
+        onEditingComplete: () {
+          if (onEditingComplete != null) {
+            onEditingComplete!();
+          }
+        },
         onChanged: onChanged,
         autofocus: autoFocus,
         readOnly: readOnly || !enable,
         textCapitalization: textCapitalization,
         keyboardType: keyboardType,
         textInputAction: textInputAction,
-        onTap: () => onTap!(),
+        onTap: () {
+          if (onTap != null) {
+            onTap!();
+          }
+        },
         inputFormatters: inputFormatter,
         obscureText: obscureText,
       ),
