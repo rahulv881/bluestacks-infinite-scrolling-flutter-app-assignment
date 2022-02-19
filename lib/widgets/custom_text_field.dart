@@ -9,6 +9,7 @@ class CustomTextField extends StatelessWidget {
   FocusNode? focusNode;
   Widget? suffixIcon;
   List<TextInputFormatter>? inputFormatter;
+  int? maxLength;
   String hintText;
   bool autoFocus, readOnly, obscureText, enable, error;
   TextCapitalization textCapitalization;
@@ -19,6 +20,7 @@ class CustomTextField extends StatelessWidget {
     this.onTap,
     this.onEditingComplete,
     this.controller,
+    this.maxLength,
     this.onChanged,
     this.hintText = '',
     this.autoFocus = false,
@@ -45,8 +47,10 @@ class CustomTextField extends StatelessWidget {
         cursorHeight: 20,
         cursorWidth: 1,
         controller: controller,
+        maxLength: maxLength,
         focusNode: focusNode,
         decoration: InputDecoration(
+          counterText: "",
           contentPadding:
               const EdgeInsets.only(left: 20, right: 20, top: 16, bottom: 16),
           suffixIcon: suffixIcon,

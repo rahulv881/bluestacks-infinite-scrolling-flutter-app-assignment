@@ -61,6 +61,7 @@ class _LoginPageState extends State<LoginPage> {
                         //
                         return CustomTextField(
                           hintText: "Mobile Number",
+                          maxLength: 10,
                           inputFormatter: [
                             FilteringTextInputFormatter.allow(RegExp("[0-9]*")),
                           ],
