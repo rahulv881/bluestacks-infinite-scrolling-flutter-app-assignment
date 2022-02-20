@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_assignment/model/tournaments_model.dart';
 import 'package:flutter_assignment/model/user_info_mock_data.dart';
 import 'package:flutter_assignment/ui/home/bloc/home_page_ui_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,14 +14,22 @@ class HomePageUI extends StatefulWidget {
 
 class _HomePageUIState extends State<HomePageUI> {
   late HomePageUiBloc _homePageUiBloc;
+  late HomePageUiBloc _homePageUiBloc2;
+  late List<Tournament> _listTournaments;
+  late ScrollController _scrollController;
+
   UserInfoMockData? _userInfoMockData;
   @override
   void initState() {
     super.initState();
+    _listTournaments = [];
     _homePageUiBloc = HomePageUiBloc();
+    _homePageUiBloc2 = HomePageUiBloc();
+    _scrollController = ScrollController();
     if (_userInfoMockData == null) {
       _homePageUiBloc.add(LoadUserInfoEvent());
     }
+    _scrollController.addListener(() {});
   }
 
   @override
@@ -47,6 +56,13 @@ class _HomePageUIState extends State<HomePageUI> {
             child: Column(
               children: [
                 _buildUserCardAndTournamentCard(theme),
+
+                // RecommendedForYouCardUI(
+                //    title:
+                //        "DkjAssam's Free Fire tournament Oct 01, 2020 09:01:14",
+                //    subtitle: "Free Fire",
+                //    imgUrl:
+                //        "https://cdn-bgp.bluestacks.com/tournaments/pwa/banners2/Default_Banner_2.jpg")
               ],
             ),
           ),
@@ -80,7 +96,8 @@ class _HomePageUIState extends State<HomePageUI> {
             children: [
               _buildUserCard(_userInfoMockData, theme),
               const SizedBox(height: 36.0),
-              _buildTournamentCard(_userInfoMockData, theme)
+              _buildTournamentCard(_userInfoMockData, theme),
+              _buildRecommendedForYouList(theme),
             ],
           );
         }
@@ -123,8 +140,9 @@ class _HomePageUIState extends State<HomePageUI> {
                   child: RichText(
                     textAlign: TextAlign.center,
                     text: TextSpan(
-                        text: (_userInfoMockData?.rating.toString()) ??
-                            "Nil" + " ",
+                        text:
+                            ((_userInfoMockData?.rating.toString()) ?? "Nil") +
+                                " ",
                         style: theme.textTheme.headline4!.copyWith(
                           color: theme.primaryColor,
                         ),
@@ -278,6 +296,18 @@ class _HomePageUIState extends State<HomePageUI> {
           ),
         ),
       ],
+    );
+  }
+
+  _buildRecommendedForYouList(ThemeData theme) {
+    return BlocProvider(
+      create: (context) => _homePageUiBloc2,
+      child: BlocConsumer<HomePageUiBloc, HomePageUiState>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          return Container();
+        },
+      ),
     );
   }
 }
