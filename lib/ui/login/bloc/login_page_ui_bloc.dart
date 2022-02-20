@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_assignment/constants.dart';
 import 'package:flutter_assignment/model/Response.dart';
 import 'package:flutter_assignment/model/user_info_mock_data.dart';
-import 'package:meta/meta.dart';
 
 import 'package:flutter_assignment/ui/login/login_repo.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -42,9 +42,12 @@ class LoginPageUiBloc extends Bloc<LoginPageUiEvent, LoginPageUiState> {
           emit(LoginPageErrorState(errMsg: "Please enter mobile number"));
         } else if (passwordLength == 0) {
           emit(LoginPageErrorState(errMsg: "Please enter password"));
-        } else if (usernameLength != 10) {
+        } else if (usernameLength < 3) {
           emit(LoginPageErrorState(
-              errMsg: "Mobile number should be 10 digits long"));
+              errMsg: "Mobile number should be at least 3 characters long"));
+        } else if (usernameLength > 11) {
+          emit(LoginPageErrorState(
+              errMsg: "Mobile number should be at max 11 characters long"));
         } else if (passwordLength < 3) {
           emit(LoginPageErrorState(
               errMsg: "Password should be aleast 3 characters long"));
@@ -64,8 +67,9 @@ class LoginPageUiBloc extends Bloc<LoginPageUiEvent, LoginPageUiState> {
             WidgetsFlutterBinding.ensureInitialized();
             final SharedPreferences prefs =
                 await SharedPreferences.getInstance();
-            prefs.setBool('isLoggedIn', true);
-            prefs.setString('userInfo', userInfoMockDataToJson(userInfo!));
+            prefs.setBool(Constants.IS_LOGGED_IN, true);
+            prefs.setString(
+                Constants.USER_INFO, userInfoMockDataToJson(userInfo!));
             emit(UserAuthenticatedSuccefullyState(userInfo: userInfo));
           }
         }

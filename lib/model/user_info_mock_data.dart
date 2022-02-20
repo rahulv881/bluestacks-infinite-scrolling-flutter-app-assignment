@@ -18,6 +18,9 @@ class UserInfoMockData {
     required this.mobileNumber,
     required this.profileImgUrl,
     required this.rating,
+    required this.winningPercentage,
+    required this.tournamentsPlayed,
+    required this.tournamentsWon,
   });
 
   String name;
@@ -26,6 +29,9 @@ class UserInfoMockData {
   String mobileNumber;
   String profileImgUrl;
   int rating;
+  double winningPercentage;
+  int tournamentsPlayed;
+  int tournamentsWon;
 
   factory UserInfoMockData.fromJson(Map<String, dynamic> json) =>
       UserInfoMockData(
@@ -35,6 +41,9 @@ class UserInfoMockData {
         mobileNumber: json["mobileNumber"],
         profileImgUrl: json["profileImgUrl"],
         rating: json["rating"],
+        tournamentsPlayed: json["tournamentsPlayed"],
+        tournamentsWon: json["tournamentsWon"],
+        winningPercentage: json["winningPercentage"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -44,5 +53,8 @@ class UserInfoMockData {
         "mobileNumber": mobileNumber,
         "profileImgUrl": profileImgUrl,
         "rating": rating,
+        "tournamentsPlayed": tournamentsPlayed,
+        "tournamentsWon": tournamentsWon,
+        "winningPercentage": winningPercentage,
       };
 }

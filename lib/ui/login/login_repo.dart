@@ -10,18 +10,26 @@ class LoginRepo {
       UserInfoMockData(
         name: "Simon Baker",
         userId: 1,
-        profileImgUrl: "",
+        profileImgUrl:
+            "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=100&w=100",
         password: "password123",
         mobileNumber: "9898989898",
         rating: 2250,
+        tournamentsPlayed: 100,
+        tournamentsWon: 11,
+        winningPercentage: 11 / 100.0,
       ),
       UserInfoMockData(
-        name: "Simon Baker2",
+        name: "Elizabeth Gillies",
         userId: 2,
-        profileImgUrl: "",
+        profileImgUrl:
+            "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=100&w=100",
         password: "password123",
         mobileNumber: "9876543210",
         rating: 2200,
+        tournamentsPlayed: 34,
+        tournamentsWon: 09,
+        winningPercentage: 09 / 34.0,
       ),
     ];
 
