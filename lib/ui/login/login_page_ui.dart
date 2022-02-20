@@ -154,18 +154,18 @@ class _LoginPageState extends State<LoginPage> {
                         }
                       },
                       builder: (context, state) {
-                        return SizedBox(
-                          height: 48.0,
-                          width: MediaQuery.of(context).size.width,
-                          child: isAuthenticating
-                              ? Container(
-                                  height: 48.0,
-                                  width: 48.0,
-                                  child: CircularProgressIndicator(
-                                    color: theme.primaryColor,
-                                  ),
-                                )
-                              : Expanded(
+                        return isAuthenticating
+                            ? SizedBox(
+                                height: 48.0,
+                                width: 48.0,
+                                child: CircularProgressIndicator(
+                                  color: theme.primaryColor,
+                                ),
+                              )
+                            : SizedBox(
+                                height: 48.0,
+                                width: MediaQuery.of(context).size.width,
+                                child: Expanded(
                                   child: ElevatedButton(
                                     onPressed: () {
                                       _loginPageUiBloc.add(
@@ -181,7 +181,7 @@ class _LoginPageState extends State<LoginPage> {
                                     ),
                                   ),
                                 ),
-                        );
+                              );
                       },
                     ),
                   ],

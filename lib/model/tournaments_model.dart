@@ -62,18 +62,18 @@ class Data {
 
 class Tournament {
   Tournament({
-    required this.tournamentId,
-    required this.name,
-    required this.registrationUrl,
-    required this.coverUrl,
-    required this.gameName,
+    this.tournamentId,
+    this.name,
+    this.registrationUrl,
+    this.coverUrl,
+    this.gameName,
   });
 
-  String tournamentId;
-  String name;
-  String registrationUrl;
-  String coverUrl;
-  String gameName;
+  String? tournamentId;
+  String? name;
+  String? registrationUrl;
+  String? coverUrl;
+  String? gameName;
 
   factory Tournament.fromJson(Map<String, dynamic> json) => Tournament(
         tournamentId: json["tournament_id"],

@@ -22,3 +22,21 @@ class ErrorLoadingUserInfoState extends HomePageUiState {
   @override
   List<Object> get props => [errMsg];
 }
+
+class LoadingNextTenTournamentsState extends HomePageUiState {}
+
+class NextTenTournamentsLoadedState extends HomePageUiState {
+  TournamentResponse tournamentResponse;
+  NextTenTournamentsLoadedState({required this.tournamentResponse});
+
+  @override
+  List<Object> get props => [tournamentResponse];
+}
+
+class ErrorLoadingNextTenTournamentsState extends HomePageUiState {
+  String errMsg;
+  ErrorLoadingNextTenTournamentsState({required this.errMsg});
+
+  @override
+  List<Object> get props => [errMsg];
+}

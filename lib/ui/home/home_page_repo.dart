@@ -3,18 +3,16 @@ import 'package:flutter_assignment/model/Response.dart';
 import 'package:flutter_assignment/model/tournaments_model.dart';
 
 class HomePageRepo {
-  Future<CustomResponseWrapper<String, List<Tournament>>> getNextTenTournaments(
-      {required String cursor}) async {
+  Future<CustomResponseWrapper<String, TournamentResponse>>
+      getNextTenTournaments({required String cursor}) async {
     ApiProvider _apiProvider = ApiProvider();
     final response = await _apiProvider.getNextTenTournaments(cursor);
-
     TournamentResponse tournamentResponse =
         tournamentResponseFromJson(response.body);
-    List<Tournament> tournaments = [];
     String errMsg = "";
+    // * Can throw specific error message for the range of status code.
     if (response.statusCode >= 200 && response.statusCode <= 299) {
-      errMsg = "Something went wrong";
-      tournamentResponse.data.tournaments;
+      errMsg = "";
     } else if (response.statusCode >= 300 && response.statusCode <= 399) {
       errMsg = "Something went wrong";
     } else if (response.statusCode >= 400 && response.statusCode <= 499) {
@@ -23,7 +21,7 @@ class HomePageRepo {
       errMsg = "Something went wrong";
     }
 
-    return CustomResponseWrapper<String, List<Tournament>>(
-        errMsg: errMsg, res: tournaments);
+    return CustomResponseWrapper<String, TournamentResponse>(
+        errMsg: errMsg, res: tournamentResponse);
   }
 }

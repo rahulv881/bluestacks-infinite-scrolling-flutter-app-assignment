@@ -14,6 +14,7 @@ class RecommendedForYouCardUI extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Container(
       decoration: const BoxDecoration(
           color: Colors.white,
@@ -21,9 +22,9 @@ class RecommendedForYouCardUI extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color: Colors.grey,
-              blurRadius: 4.0,
-              offset: Offset(2, 0),
-              spreadRadius: 2.0,
+              blurRadius: 2.0,
+              offset: Offset(1, 1),
+              spreadRadius: 0.0,
             )
           ]),
       child: Column(
@@ -42,7 +43,7 @@ class RecommendedForYouCardUI extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 16.0, top: 16.0, bottom: 8.0),
+            padding: const EdgeInsets.only(left: 16.0, top: 16.0, bottom: 12.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -55,11 +56,16 @@ class RecommendedForYouCardUI extends StatelessWidget {
                       Text(
                         title,
                         maxLines: 1,
+                        style: theme.textTheme.headline6,
                         overflow: TextOverflow.ellipsis,
                       ),
                       Text(
                         subtitle,
                         maxLines: 1,
+                        style: theme.textTheme.subtitle2!.copyWith(
+                          color: Colors.grey,
+                          fontWeight: FontWeight.normal,
+                        ),
                         overflow: TextOverflow.ellipsis,
                       ),
                     ],
