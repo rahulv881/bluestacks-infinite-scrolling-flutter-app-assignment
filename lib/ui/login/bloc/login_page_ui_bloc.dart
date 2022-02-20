@@ -1,9 +1,11 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_assignment/model/Response.dart';
 import 'package:flutter_assignment/model/user_info_mock_data.dart';
 import 'package:meta/meta.dart';
 
 import 'package:flutter_assignment/ui/login/login_repo.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'login_page_ui_event.dart';
 part 'login_page_ui_state.dart';
@@ -59,6 +61,11 @@ class LoginPageUiBloc extends Bloc<LoginPageUiEvent, LoginPageUiState> {
           if (errMsg.isNotEmpty) {
             emit(LoginPageErrorState(errMsg: errMsg));
           } else {
+            WidgetsFlutterBinding.ensureInitialized();
+            final SharedPreferences prefs =
+                await SharedPreferences.getInstance();
+            prefs.setBool('isLoggedIn', true);
+            prefs.setString('userInfo', userInfoMockDataToJson(userInfo!));
             emit(UserAuthenticatedSuccefullyState(userInfo: userInfo));
           }
         }

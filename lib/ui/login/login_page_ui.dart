@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_assignment/ui/home/home_page_ui.dart';
 import 'package:flutter_assignment/ui/login/bloc/login_page_ui_bloc.dart';
 import 'package:flutter_assignment/widgets/custom_text_field.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginPage extends StatefulWidget {
+  static const TAG = "LOGIN PAGE UI";
   LoginPage({Key? key}) : super(key: key);
 
   @override
@@ -144,6 +146,7 @@ class _LoginPageState extends State<LoginPage> {
                         }
                         if (state is UserAuthenticatedSuccefullyState) {
                           isAuthenticating = false;
+                          Navigator.of(context).pushNamed(HomePageUI.TAG);
                         }
                         if (state is LoginPageErrorState) {
                           errMsg = state.errMsg;
@@ -155,7 +158,7 @@ class _LoginPageState extends State<LoginPage> {
                           height: 48.0,
                           width: MediaQuery.of(context).size.width,
                           child: isAuthenticating
-                              ? SizedBox(
+                              ? Container(
                                   height: 48.0,
                                   width: 48.0,
                                   child: CircularProgressIndicator(

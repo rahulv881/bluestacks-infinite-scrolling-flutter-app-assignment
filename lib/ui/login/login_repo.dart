@@ -8,17 +8,21 @@ class LoginRepo {
     await Future.delayed(Duration(seconds: 1));
     final users = [
       UserInfoMockData(
-          name: "Simon Baker",
-          userId: "1",
-          profileImgUrl: "",
-          password: "password123",
-          mobileNumber: "9898989898"),
+        name: "Simon Baker",
+        userId: 1,
+        profileImgUrl: "",
+        password: "password123",
+        mobileNumber: "9898989898",
+        rating: 2250,
+      ),
       UserInfoMockData(
-          name: "Simon Baker2",
-          userId: "2",
-          profileImgUrl: "",
-          password: "password123",
-          mobileNumber: "9876543210"),
+        name: "Simon Baker2",
+        userId: 2,
+        profileImgUrl: "",
+        password: "password123",
+        mobileNumber: "9876543210",
+        rating: 2200,
+      ),
     ];
 
     final isValidUser =
@@ -32,6 +36,7 @@ class LoginRepo {
             user.mobileNumber.compareTo(username) == 0 &&
             user.password.compareTo(password) == 0)
         .toList();
+
     if (usersInfo.length != 1) {
       return CustomResponseWrapper<String, UserInfoMockData>(
           errMsg: 'Please enter valid credentials.', res: null);
