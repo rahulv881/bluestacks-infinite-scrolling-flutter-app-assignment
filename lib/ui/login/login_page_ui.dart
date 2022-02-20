@@ -165,20 +165,18 @@ class _LoginPageState extends State<LoginPage> {
                             : SizedBox(
                                 height: 48.0,
                                 width: MediaQuery.of(context).size.width,
-                                child: Expanded(
-                                  child: ElevatedButton(
-                                    onPressed: () {
-                                      _loginPageUiBloc.add(
-                                        LoginUserEvent(
-                                          username: username,
-                                          password: password,
-                                        ),
-                                      );
-                                    },
-                                    child: const Text("Login"),
-                                    style: ElevatedButton.styleFrom(
-                                      elevation: 0,
-                                    ),
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    _loginPageUiBloc.add(
+                                      LoginUserEvent(
+                                        username: username,
+                                        password: password,
+                                      ),
+                                    );
+                                  },
+                                  child: const Text("Login"),
+                                  style: ElevatedButton.styleFrom(
+                                    elevation: 0,
                                   ),
                                 ),
                               );
